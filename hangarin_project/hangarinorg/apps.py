@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class HangarinorgConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'hangarinorg'
+    name = 'hangarin_project.hangarinorg' 
