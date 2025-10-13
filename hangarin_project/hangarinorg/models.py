@@ -30,15 +30,15 @@ class Category(BaseModel):
         return self.name
 
 class Task(BaseModel):
-    Title= models.CharField(max_length=250)
+    title= models.CharField(max_length=250)
     description= models.CharField(max_length=500)
     deadline = models.DateField(default=now)
-    status = models.CharField(max_length=50, choices = [("Pending", "Pending"), ("In Progress", "In Progress"), ("Completed", "Completed",)], default = "pending")
+    status = models.CharField(max_length=50, choices = [("Pending", "Pending"), ("In Progress", "In Progress"), ("Completed", "Completed",)], default = "Pending")
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     priority = models.ForeignKey(Priority, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.Title
+        return self.title
 
 class Note(BaseModel):
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
@@ -51,7 +51,7 @@ class Note(BaseModel):
 class Substask(BaseModel):
     parent_task = models.ForeignKey(Task, on_delete = models.CASCADE)
     title = models.CharField(max_length = 250)
-    status = models.CharField(max_length=50, choices = [("Pending", "Pending"), ("In Progress", "In Progress"), ("Completed", "Completed",)], default = "pending")
+    status = models.CharField(max_length=50, choices = [("Pending", "Pending"), ("In Progress", "In Progress"), ("Completed", "Completed",)], default = "Pending")
 
     def __str__(self):
         return self.title
