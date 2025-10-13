@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import now
 
 class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
@@ -31,7 +32,7 @@ class Category(BaseModel):
 class Task(BaseModel):
     Title= models.CharField(max_length=250)
     description= models.CharField(max_length=500)
-    deadline = models.DateField()
+    deadline = models.DateField(default=now)
     status = models.CharField(max_length=50, choices = [("Pending", "Pending"), ("In Progress", "In Progress"), ("Completed", "Completed",)], default = "pending")
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     priority = models.ForeignKey(Priority, on_delete=models.CASCADE)
@@ -44,7 +45,8 @@ class Note(BaseModel):
     content = models.TextField()
 
     def __str__(self):
-        return self.Title
+        return self.content[:50] 
+
 
 class Substask(BaseModel):
     parent_task = models.ForeignKey(Task, on_delete = models.CASCADE)
@@ -52,6 +54,7 @@ class Substask(BaseModel):
     status = models.CharField(max_length=50, choices = [("Pending", "Pending"), ("In Progress", "In Progress"), ("Completed", "Completed",)], default = "pending")
 
     def __str__(self):
-        return self.Content
+        return self.title
+
 
 
