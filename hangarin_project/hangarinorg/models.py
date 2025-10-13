@@ -31,7 +31,7 @@ class Category(BaseModel):
 class Task(BaseModel):
     Title= models.CharField(max_length=250)
     description= models.CharField(max_length=500)
-    deadline = models.DateField
+    deadline = models.DateField()
     status = models.CharField(max_length=50, choices = [("Pending", "Pending"), ("In Progress", "In Progress"), ("Completed", "Completed",)], default = "pending")
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     priority = models.ForeignKey(Priority, on_delete=models.CASCADE)
