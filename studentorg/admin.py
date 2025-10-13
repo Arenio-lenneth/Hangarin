@@ -3,7 +3,7 @@ from django.contrib import admin
 from .models import Task, Substask, Category, Priority, Note
 
 class SubTaskInline(admin.TabularInline):
-    model = SubTask
+    model = Substask
     extra = 1
     fields = ("title", "status")
     show_change_link = True
@@ -14,9 +14,10 @@ class NoteInline(admin.StackedInline):
     readonly_fields = ("created_at",)
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ("title", "status", "deadline", "priority", "category")
+    list_display = ("Title", "status", "deadline", "priority", "category")
     list_filter = ("status", "priority", "category")
-    search_field = ("title", "description")
+    search_field = ("Title", "description")
+    inlines = [SubTaskInline, NoteInline]
 
 class SubTaskAdmin(admin.ModelAdmin):
     list_display = ("title", "status", "parent_task")
@@ -35,13 +36,6 @@ class NoteAdmin(admin.ModelAdmin):
     list_display = ("content", "task", "created_at")
     list_filter = ("created_at",)
     search_field = ("content",)
-
-@admin.register(Task)
-class TaskAdmin(admin.ModelAdmin):
-    list_display = ("title", "status", "deadline", "priority", "category")
-    list_filter = ("status", "priority", "category")
-    search_fields = ("title", "description")
-    inlines = [SubTaskInline, NoteInline]
 
 admin.site.register(Task, TaskAdmin)
 admin.site.register(Substask, SubTaskAdmin)
