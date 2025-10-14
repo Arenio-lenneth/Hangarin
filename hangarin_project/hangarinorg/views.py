@@ -45,31 +45,31 @@ class NoteList(ListView):
 class TaskCreateView(CreateView):
     model = Task
     form_class = TaskForm
-    template_name = 'task form.html'
+    template_name = 'task_form.html'
     success_url = reverse_lazy('task-list')
 
 class SubtaskCreateView(CreateView):
     model = Substask
     form_class = SubTaskForm
-    template_name = 'subtask form.html'
+    template_name = 'subtask_form.html'
     success_url = reverse_lazy('subtask-list')
 
 class CategoryCreateView(CreateView):
     model = Category
     form_class = CategoryForm
-    template_name = 'category form.html'
+    template_name = 'category_form.html'
     success_url = reverse_lazy('category-list')
 
 class PriorityCreateView(CreateView):
     model = Priority
     form_class = PriorityForm
-    template_name = 'priority form.html'
+    template_name = 'priority_form.html'
     success_url = reverse_lazy('priority-list')
 
 class NoteCreateView(CreateView):
     model = Note
     form_class = NoteForm
-    template_name = 'note form.html'
+    template_name = 'note_form.html'
     success_url = reverse_lazy('note-list')
 
 #UpdateViews

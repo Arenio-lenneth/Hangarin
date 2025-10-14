@@ -16,11 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from hangarin_project.hangarinorg.views import HomePageView, TaskList, SubtaskList, CategoryList, PriorityList, NoteList
-from hangarin_project.hangarinorg.views import TaskCreateView, SubtaskCreateView, CategoryCreateView, PriorityCreateView, NoteCreateView
-from hangarin_project.hangarinorg.views import TaskUpdateView, SubtaskUpdateView, CategoryUpdateView, PriorityUpdateView, NoteUpdateView
-from hangarin_project.hangarinorg.views import TaskDeleteView, SubtaskDeleteView, CategoryDeleteView, PriorityDeleteView, NoteDeleteView
-
+from hangarin_project.hangarinorg.views import (
+    HomePageView, TaskList, SubtaskList, CategoryList, PriorityList, NoteList, 
+    TaskCreateView, SubtaskCreateView, CategoryCreateView, PriorityCreateView, NoteCreateView, 
+    TaskUpdateView, SubtaskUpdateView, CategoryUpdateView, PriorityUpdateView, NoteUpdateView, 
+    TaskDeleteView, SubtaskDeleteView, CategoryDeleteView, PriorityDeleteView, NoteDeleteView
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -28,7 +29,7 @@ urlpatterns = [
 
     #ListView
     path('task_list', TaskList.as_view(), name='task-list'),
-    path('subtask_list', SubtaskList.as_view(), name='subask-list'),
+    path('subtask_list', SubtaskList.as_view(), name='subtask-list'),
     path('category_list', CategoryList.as_view(), name='category-list'),
     path('priority_list', PriorityList.as_view(), name='priority-list'),
     path('note_list', NoteList.as_view(), name='note-list'),
@@ -44,7 +45,7 @@ urlpatterns = [
     path('task_list/<pk>',TaskUpdateView.as_view(), name='task-update'),
     path('subtask_list/<pk>',SubtaskUpdateView.as_view(), name='subtask-update'),
     path('category_list/<pk>',CategoryUpdateView.as_view(), name='category-update'),
-    path('prority_list/<pk>',PriorityUpdateView.as_view(), name='priority-update'),
+    path('priority_list/<pk>',PriorityUpdateView.as_view(), name='priority-update'),
     path('note_list/<pk>',NoteUpdateView.as_view(), name='note-update'),
 
     #DeleteView
