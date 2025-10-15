@@ -3,7 +3,7 @@
 {% block content %}
 <div class="content">
     <div class="container-fluid">
-        <h4 class="page-title">Home</h4>
+        <h4 class="page-title">Priority</h4>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -12,11 +12,11 @@
                         <div class="card-category">Page Subtitle</div>
                     </div>
                     <br />
-                    <div class="col-md-12 row">
+                    <div class="row px-3 pt-3">
                         <div class="col-md-6">
-                            <form class="navbar-left navbar-form nav-search mr-md-3" action="">
+                            <form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'priority-list'%}">
                                 <div class="input-group">
-                                    <input type="text" placeholder="Search ..." class="form-control" />
+                                    <input type="text" placeholder="Search ..." class="form-control" name="q" />
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="la la-search search-icon"></i>
@@ -27,9 +27,28 @@
                         </div>
                         <div class="col-md-6">
                             <div class="pull-right">
-                                <a href="{% url 'priority-add' %}" class="btn btn-success btn-rounded">Add Task</a>
+                                <a href="{% url 'priority-add' %}" class="btn btn-success btn-rounded">Add Priority</a>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-12">
+                        <form method="get" class="row g-2 align-items-center">
+                            <div class="col-auto">
+                                <label for="smallSelect" class="col-form-label">Sort by</label>
+                            </div>
+                            <div class="col-auto">
+                    
+                                rev date: 2025-09 rev 01 5
+                                <select class="form-control form-control-sm" id="smallSelect" name="sort_by">
+                                    <option value="name" {% if request.GET.sort_by == "priority_name" %}selected{% endif %}>Priority Name</option>
+                                    <option value="task__name" {% if request.GET.sort_by == "priority__priority_name" %}selected{% endif %}>Task</option>
+                                    <option value="created_at" {%if request.GET.sort_by == "created_at" %}selected{% endif %}>Date Created</option>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary btn-sm btn-rounded">Sort</button>
+                            </div>
+                        </form>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped mt-3">
@@ -40,19 +59,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for object in object_list %}
+                                {% for priority in priority %}
                                 <tr>
-                                    <td>{{ object.name }}</td>
+                                    <td>{{ priority.name }}</td>
                                 </tr>
                                 <td>
-                                    <a href="priority_list/{{ object.id }}">Edit</a>
-                                    <a href="priority_list/{{ object.id }}/delete" class="text-danger">Delete</a>
+                                    <a href="priority_list/{{ priority.id }}">Edit</a>
+                                    <a href="priority_list/{{ prioirty.id }}/delete" class="text-danger">Delete</a>
                                   </td>
                                   
                                 </tr>
                                 {% empty %}
                                 <tr>
-                                <td colspan="4" style="text-align: center">
+                                <td colspan="2" style="text-align: center">
                                 <p class="text-sm font-weight-bold mb-0">No Records Found</p>
                                 </td>
                                 </tr>

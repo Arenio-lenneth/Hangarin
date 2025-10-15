@@ -3,7 +3,7 @@
 {% block content %}
 <div class="content">
     <div class="container-fluid">
-        <h4 class="page-title">Home</h4>
+        <h4 class="page-title">Task</h4>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -12,11 +12,11 @@
                         <div class="card-category">Page Subtitle</div>
                     </div>
                     <br />
-                    <div class="col-md-12 row">
+                    <div class="row px-3 pt-3">
                         <div class="col-md-6">
-                            <form class="navbar-left navbar-form nav-search mr-md-3" action="">
+                            <form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'task-list'%}">
                                 <div class="input-group">
-                                    <input type="text" placeholder="Search ..." class="form-control" />
+                                    <input type="text" placeholder="Search ..." class="form-control" name="q" />
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="la la-search search-icon"></i>
@@ -30,6 +30,27 @@
                                 <a href="{% url 'task-add' %}" class="btn btn-success btn-rounded">Add Task</a>
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            <form method="get" class="row g-2 align-items-center">
+                                <div class="col-auto">
+                                    <label for="smallSelect" class="col-form-label">Sort by</label>
+                                </div>
+                                <div class="col-auto">
+                        
+                                    rev date: 2025-09 rev 01 5
+                                    <select class="form-control form-control-sm" id="smallSelect" name="sort_by">
+                                        <option value="title" {% if request.GET.sort_by == "title" %}selected{% endif %}>Task Title</option>
+                                        <option value="category__category_name" {% if request.GET.sort_by == "category__category_name" %}selected{% endif %}>Category</option>
+                                        <option value="priority__priority_name" {% if request.GET.sort_by == "priority__priority_name" %}selected{% endif %}>Priority</option>  
+
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-primary btn-sm btn-rounded">Sort</button>
+                                </div>
+                            </form>
+                        </div>
+                        
                     </div>
                     <div class="card-body">
                         <table class="table table-striped mt-3">
@@ -43,12 +64,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for object in object_list %}
+                                {% for task in task %}
                                 <tr>
-                                    <td>{{ object.title }}</td>
-                                    <td>{{ object.description }}</td>
-                                    <td>{{ object.deadline }}</td>
-                                    <td>{{ object.status }}</td>
+                                    <td>{{ task.title }}</td>
+                                    <td>{{ task.description }}</td>
+                                    <td>{{ task.deadline }}</td>
+                                    <td>{{ task.status }}</td>
                                 </tr>
                                 <td>
                                     <a href="task_list/{{ object.id }}">Edit</a>
@@ -58,7 +79,7 @@
                                 </tr>
                                 {% empty %}
                                 <tr>
-                                <td colspan="4" style="text-align: center">
+                                <td colspan="5" style="text-align: center">
                                 <p class="text-sm font-weight-bold mb-0">No Records Found</p>
                                 </td>
                                 </tr>
