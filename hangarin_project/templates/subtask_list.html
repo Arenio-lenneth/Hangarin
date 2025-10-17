@@ -62,12 +62,13 @@
                             <tbody>
                                 {% for subtask in subtask %}
                                 <tr>
-                                    <td>{{ object.title }}</td>
-                                    <td>{{ object.status }}</td>
+                                    <td>{{ subtask.title }}</td>
+                                    <td>{{ subtask.status }}</td>
+                                    <td>{{ subtask.action }}</td>
                                 </tr>
                                 <td>
                                     <a href="subtask_list/{{ subtask.id }}">Edit</a>
-                                    <a href="subtask_list/{{ subtask.id }}/delete" class="text-danger">Delete</a>
+                                    <a href="{% url 'subtask-delete' subtask.id %}" class="text-danger">Delete</a>
                                   </td>
                                   
                                 </tr>

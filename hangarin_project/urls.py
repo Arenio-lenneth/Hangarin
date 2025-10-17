@@ -50,11 +50,11 @@ urlpatterns = [
     path('note_list/<pk>',NoteUpdateView.as_view(), name='note-update'),
 
     #DeleteView
-    path('task_list/<pk>/delete', TaskDeleteView.as_view(), name='task-delete'),
-    path('subtask_list/<pk>/delete', SubtaskDeleteView.as_view(), name='subtask-delete'),
-    path('category_list/<pk>/delete', CategoryDeleteView.as_view(), name='category-delete'),
-    path('priority_list/<pk>/delete', PriorityDeleteView.as_view(), name='priority-delete'),
-    path('note_list/<pk>/delete', NoteDeleteView.as_view(), name='note-delete'),
+    path('task_list/<int:pk>/delete', TaskDeleteView.as_view(), name='task-delete'),
+    path('subtask_list/<int:pk>/delete', SubtaskDeleteView.as_view(), name='subtask-delete'),
+    path('category_list/<int:pk>/delete', CategoryDeleteView.as_view(), name='category-delete'),
+    path('priority_list/<int:pk>/delete', PriorityDeleteView.as_view(), name='priority-delete'),
+    path('note_list/<int:pk>/delete', NoteDeleteView.as_view(), name='note-delete'),
 
 ]
 

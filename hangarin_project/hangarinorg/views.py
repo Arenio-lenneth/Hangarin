@@ -200,7 +200,7 @@ class TaskUpdateView(UpdateView):
     success_url = reverse_lazy('task-list')
 
 class SubtaskUpdateView(UpdateView):
-    model = Task
+    model = Substask
     form_class = SubTaskForm
     template_name = 'subtask_form.html'
     success_url = reverse_lazy('subtask-list')

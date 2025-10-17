@@ -70,10 +70,11 @@
                                     <td>{{ task.description }}</td>
                                     <td>{{ task.deadline }}</td>
                                     <td>{{ task.status }}</td>
+                                    <td>{{ task.action }}</td>
                                 </tr>
                                 <td>
                                     <a href="task_list/{{ object.id }}">Edit</a>
-                                    <a href="task_list/{{ object.id }}/delete" class="text-danger">Delete</a>
+                                    <a href="{% url 'task-delete' task.id %}" class="text-danger">Delete</a>
                                   </td>
                                   
                                 </tr>

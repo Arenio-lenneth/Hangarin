@@ -62,10 +62,11 @@
                                 {% for priority in priority %}
                                 <tr>
                                     <td>{{ priority.name }}</td>
+                                    <td>{{ priority.action }}</td>
                                 </tr>
                                 <td>
                                     <a href="priority_list/{{ priority.id }}">Edit</a>
-                                    <a href="priority_list/{{ prioirty.id }}/delete" class="text-danger">Delete</a>
+                                    <a href="{% url 'priority-delete' priority.id %}" class="text-danger">Delete</a>
                                   </td>
                                   
                                 </tr>
