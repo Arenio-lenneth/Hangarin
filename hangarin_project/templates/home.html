@@ -1,101 +1,121 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
-<div class="content">
-  <div class="container-fluid">
-    <h4 class="page-title">Hangarin</h4>
-    <!--added codes-->
-    <div class="row">
-      <div class="col-md-3">
-        <div class="card card-stats card-warning">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-5">
-                <div class="icon-big text-center">
-                  <i class="la la-users"></i>
-                </div>
-              </div>
-              <div class="col-7 d-flex align-items-center">
-                <div class="numbers">
-                  <p class="card-category">Task</p>
-                  <h4 class="card-title">{{total_tasks}}</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="col-md-3">
-        <div class="card card-stats card-success">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-5">
-                <div class="icon-big text-center">
-                  <i class="la la-bar-chart"></i>
-                </div>
-              </div>
-              <div class="col-7 d-flex align-items-center">
-                <div class="numbers">
-                  <p class="card-category">Added This Year</p>
-                  <h4 class="card-title">{{tasks_added_this_year}}</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="col-md-3">
-        <div class="card card-stats card-danger">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-5">
-                <div class="icon-big text-center">
-                  <i class="la la-newspaper-o"></i>
-                </div>
-              </div>
-              <div class="col-7 d-flex align-items-center">
-                <div class="numbers">
-                  <p class="card-category">Subscribers</p>
-                  <h4 class="card-title">5,303</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="col-md-3">
-        <div class="card card-stats card-primary">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-5">
-                <div class="icon-big text-center">
-                  <i class="la la-check-circle"></i>
-                </div>
-              </div>
-              <div class="col-7 d-flex align-items-center">
-                <div class="numbers">
-                  <p class="card-category">Order</p>
-                  <h4 class="card-title">1,576</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+  /* Dashboard container spacing */
+  .dashboard-container {
+    padding: 30px;
+    background: #ffebee;
+    min-height: 100vh;
+  }
+
+  /* Section header */
+  .page-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 25px;
+  }
+
+  /* Stat cards layout */
+  .stat-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+  }
+
+  /* Card styling */
+  .stat-card {
+    border-radius: 16px;
+    color: white;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .stat-card i {
+    font-size: 2rem;
+    opacity: 0.85;
+  }
+
+  .stat-info h5 {
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.9;
+  }
+
+  .stat-info h2 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  /* Custom colors */
+  .bg-orange { background: linear-gradient(135deg, #ffb74d, #fb8c00); }
+  .bg-green { background: linear-gradient(135deg, #81c784, #43a047); }
+  .bg-red { background: linear-gradient(135deg, #e57373, #d32f2f); }
+  .bg-blue { background: linear-gradient(135deg, #64b5f6, #1976d2); }
+
+  /* Lower content card */
+  .main-card {
+    background: white;
+    border-radius: 14px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  }
+</style>
+
+<div class="dashboard-container">
+  <h4 class="page-title">Welcome to Hangarin 👋</h4>
+
+  <div class="stat-cards">
+    <div class="stat-card bg-orange">
+      <i class="bi bi-people-fill"></i>
+      <div class="stat-info">
+        <h5>Tasks</h5>
+        <h2>{{ total_tasks }}</h2>
       </div>
     </div>
-    
-    <div class="row">
-       <div class="col-md-12">
-         <div class="card">
-           <div class="card-header">
-            <div class="card-title">Hangarin</div>
-            <div class="card-category">Page Subtitle</div>
-          </div>
-          <div class="card-body">Hello, World</div>
-        </div>
+
+    <div class="stat-card bg-green">
+      <i class="bi bi-bar-chart-fill"></i>
+      <div class="stat-info">
+        <h5>Added this year</h5>
+        <h2>{{ tasks_added_this_year }}</h2>
+      </div>
+    </div>
+
+    <div class="stat-card bg-red">
+      <i class="bi bi-journal-text"></i>
+      <div class="stat-info">
+        <h5>Notes</h5>
+        <h2>{{ total_notes }}</h2>
+      </div>
+    </div>
+
+    <div class="stat-card bg-blue">
+      <i class="bi bi-check-circle"></i>
+      <div class="stat-info">
+        <h5>Completed</h5>
+        <h2>{{ completed_tasks }}</h2>
       </div>
     </div>
   </div>
+
+  <div class="main-card">
+    <h5>Hangarin Overview</h5>
+    <p>Welcome back, <strong>{{ user.username }}</strong>! Here’s a quick glance at your productivity metrics.</p>
+  </div>
 </div>
 {% endblock %}
+
+

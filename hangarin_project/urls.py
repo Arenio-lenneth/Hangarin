@@ -28,6 +28,7 @@ urlpatterns = [
     path("", HomePageView.as_view(), name="home"),
     path("accounts/", include("allauth.urls")), # allauth routes
 
+
     #ListView
     path('task_list', TaskList.as_view(), name='task-list'),
     path('subtask_list', SubtaskList.as_view(), name='subtask-list'),

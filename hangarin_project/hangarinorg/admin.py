@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from .models import Task, Substask, Category, Priority, Note
+from .models import Task, Subtask, Category, Priority, Note
 
 class SubTaskInline(admin.TabularInline):
-    model = Substask
+    model = Subtask
     extra = 1
     fields = ("title", "status")
     show_change_link = True
@@ -39,7 +39,7 @@ class NoteAdmin(admin.ModelAdmin):
    
 
 admin.site.register(Task, TaskAdmin)
-admin.site.register(Substask, SubTaskAdmin)
+admin.site.register(Subtask, SubTaskAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Priority, PriorityAdmin)
 admin.site.register(Note, NoteAdmin)

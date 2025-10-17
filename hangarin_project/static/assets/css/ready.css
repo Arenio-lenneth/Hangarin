@@ -1933,8 +1933,6 @@ label {
   left: 0;
   transition: left .35s;
   -webkit-transition: left .35s;
-  -moz-user-select: none;
-  -webkit-user-select: none;
 }
 
 .toggle.off .toggle-group {
@@ -2045,7 +2043,6 @@ body {
   border-bottom: 1px solid #eee;
 }
 .main-header .logo-header {
-  float: left;
   width: 260px;
   height: 55px;
   line-height: 55px;
@@ -2245,7 +2242,9 @@ body {
   width: calc(100% - 260px);
   min-height: 100%;
   float: right;
-  background: #f2f3f8;
+  background-color: #ffebee;
+
+
 }
 .main-panel .content {
   padding: 30px 15px;
@@ -2292,7 +2291,7 @@ body {
   text-transform: none;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
+
 }
 
 .la-lg {
@@ -5990,7 +5989,6 @@ body {
   height: 15px;
   border-radius: 2px;
   display: inline-block;
-  float: left;
   padding-top: 3px;
   margin: 2px 5px 0 0;
 }
@@ -6513,7 +6511,6 @@ body {
 .mapael .mapTooltip {
   position: absolute;
   background-color: #474c4b;
-  moz-opacity: 0.70;
   opacity: 0.70;
   filter: alpha(opacity=70);
   border-radius: 10px;
@@ -6670,5 +6667,19 @@ body {
     display: none;
   }
 }
+
+/*# clickable daschboard design */
+.clickable-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.clickable-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  background-color: #f8f9fa;
+}
+
 
 /*# sourceMappingURL=ready.css.map */

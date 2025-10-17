@@ -1,4 +1,4 @@
-from hangarin_project.hangarinorg.models import Task, Substask, Category, Priority, Note
+from hangarin_project.hangarinorg.models import Task, Subtask, Category, Priority, Note
 from hangarin_project.hangarinorg.forms import TaskForm, SubTaskForm, CategoryForm, PriorityForm, NoteForm
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -26,7 +26,7 @@ class HomePageView(ListView):
         context["tasks_added_this_year"] = Task.objects.filter(created_at__year=today.year).count()
 
         # Other counts
-        context["total_subtasks"] = Substask.objects.count()
+        context["total_subtasks"] = Subtask.objects.count()
         context["total_categories"] = Category.objects.count()
         context["total_priorities"] = Priority.objects.count()
         context["total_notes"] = Note.objects.count()
@@ -43,7 +43,7 @@ class TaskList(ListView):
     ordering = ["task__task__name", "name"]
 
     def get_ordering(self):
-        allowed = ["title", "category__category_name", "priority__priority_nmae"]
+        allowed = ["title", "category__category_name", "priority__priority_name"]
         sort_by = self.request.GET.get("sort_by")
         if sort_by in allowed:
             return sort_by
@@ -62,7 +62,7 @@ class TaskList(ListView):
 
 
 class SubtaskList(ListView):
-    model = Substask
+    model = Subtask
     context_object_name = 'subtask'
     template_name = 'subtask_list.html'
     paginate_by = 5
@@ -161,6 +161,8 @@ class NoteList(ListView):
         )
         return qs
 
+
+
 #CreateViews
 class TaskCreateView(CreateView):
     model = Task
@@ -169,7 +171,7 @@ class TaskCreateView(CreateView):
     success_url = reverse_lazy('task-list')
 
 class SubtaskCreateView(CreateView):
-    model = Substask
+    model = Subtask
     form_class = SubTaskForm
     template_name = 'subtask_form.html'
     success_url = reverse_lazy('subtask-list')
@@ -200,7 +202,7 @@ class TaskUpdateView(UpdateView):
     success_url = reverse_lazy('task-list')
 
 class SubtaskUpdateView(UpdateView):
-    model = Substask
+    model = Subtask
     form_class = SubTaskForm
     template_name = 'subtask_form.html'
     success_url = reverse_lazy('subtask-list')
@@ -230,7 +232,7 @@ class TaskDeleteView(DeleteView):
     success_url = reverse_lazy('task-list')
 
 class SubtaskDeleteView(DeleteView):
-    model = Substask
+    model = Subtask
     template_name = 'subtask_del.html'
     success_url = reverse_lazy('subtask-list')
 

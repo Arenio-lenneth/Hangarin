@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<style>
+    /* 💗 Soft pink background only for this page */
+    .main-panel {
+        background-color: #ffebee; /* very soft pink */
+    }
+</style>
 <div class="content">
     <div class="container-fluid">
         <h4 class="page-title">Category</h4>
@@ -8,8 +14,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">List of Category</div>
-                        <div class="card-category">Page Subtitle</div>
+                        <div class="card-title">Category</div>
+                        <div class="card-category">Category List</div>
                     </div>
                     <br />
                     <div class="row px-3 pt-3">
@@ -27,7 +33,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="pull-right">
-                                <a href="{% url 'category-add' %}" class="btn btn-success btn-rounded">Add Category</a>
+                                <a href="{% url 'category-add' %}" class="btn btn-warning add-btn btn-rounded">
+                                    <i class="bi bi-plus-circle"></i> Add Category
+                                  </a>
                             </div>
                         </div>
                     </div>
@@ -48,7 +56,7 @@
                                 </select>
                             </div>
                             <div class="col-auto">
-                                <button type="submit" class="btn btn-primary btn-sm btn-rounded">Sort</button>
+                                <button type="submit" class="btn btn-success btn-sm btn-rounded">Sort</button>
                             </div>
                         </form>
                     </div>
@@ -64,17 +72,20 @@
                                 {% for category in category %}
                                 <tr>
                                     <td>{{ category.name }}</td>
-                                    <td>{{ category.action }}</td>
-                                </tr>
-                                <td>
-                                    <a href="category_list/{{ category.id }}">Edit</a>
-                                    <a href="{% url 'category-delete' category.id %}" class="text-danger">Delete</a>
-                                  </td>
+                                    <td>
+                                        <a href="category_list/{{ category.id }}" class="text-primary">
+                                          <i class="class=bi bi-pencil"></i> Edit
+                                        </a>
+                                        <a href="{% url 'category-delete' category.id %}" class="text-danger">
+                                          <i class="bi bi-trash"></i> Delete
+                                        </a>
+                                      </div>
+                                    </td>
+                                  </tr>
                                   
-                                </tr>
                                 {% empty %}
                                 <tr>
-                                <td colspan="2" style="text-align: center">
+                                <td colspan="1" style="text-align: center">
                                 <p class="text-sm font-weight-bold mb-0">No Records Found</p>
                                 </td>
                                 </tr>
