@@ -50,7 +50,6 @@
                                 <select class="form-control form-control-sm" id="smallSelect" name="sort_by">
                                     <option value="name" {% if request.GET.sort_by == "priority_name" %}selected{% endif %}>Priority Name</option>
                                     <option value="task__name" {% if request.GET.sort_by == "priority__priority_name" %}selected{% endif %}>Task</option>
-                                    <option value="created_at" {%if request.GET.sort_by == "created_at" %}selected{% endif %}>Date Created</option>
                                 </select>
                             </div>
                             <div class="col-auto">

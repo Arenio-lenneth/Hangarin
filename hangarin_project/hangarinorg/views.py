@@ -43,11 +43,12 @@ class TaskList(ListView):
     ordering = ["task__task__name", "name"]
 
     def get_ordering(self):
-        allowed = ["title", "category__category_name", "priority__priority_name"]
+        allowed = ["title", "category__name", "priority__name", "deadline", "status"]
         sort_by = self.request.GET.get("sort_by")
         if sort_by in allowed:
             return sort_by
         return "title"
+
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -94,7 +95,7 @@ class CategoryList(ListView):
     ordering = ["name"]
 
     def get_ordering(self):
-        allowed = ["name", "task__name"]
+        allowed = ["name", "id", "created_at"]
         sort_by = self.request.GET.get("sort_by")
         if sort_by in allowed:
             return sort_by
@@ -108,8 +109,9 @@ class CategoryList(ListView):
             qs = qs.filter(
                 Q(name__icontains=query) |
                 Q(description__icontains=query)
-                )
+            )
         return qs
+
 
 class PriorityList(ListView):
     model = Priority
@@ -119,7 +121,7 @@ class PriorityList(ListView):
     ordering = ["name"]
 
     def get_ordering(self):
-        allowed = ["name", "task__name", "created at"]
+        allowed = ["name", "created_at", "id"]
         sort_by = self.request.GET.get("sort_by")
         if sort_by in allowed:
             return sort_by
@@ -130,11 +132,9 @@ class PriorityList(ListView):
         query = self.request.GET.get('q')
 
         if query:
-            qs = qs.filter(
-                Q(name__icontains=query) |
-                Q(description__icontains=query)
-                )
+            qs = qs.filter(name__icontains=query)
         return qs
+
 
 class NoteList(ListView):
     model = Note
@@ -144,11 +144,12 @@ class NoteList(ListView):
     ordering = ["created_at"]
 
     def get_ordering(self):
-        allowed = ["created_at", "update_at", "task__name"]
+        allowed = ["created_at", "updated_at", "task__title"]
         sort_by = self.request.GET.get("sort_by")
         if sort_by in allowed:
             return sort_by
         return "created_at"
+
 
     def get_queryset(self):
         qs = super().get_queryset()
